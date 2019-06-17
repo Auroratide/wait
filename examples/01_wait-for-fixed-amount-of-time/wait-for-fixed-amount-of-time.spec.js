@@ -15,4 +15,11 @@ describe('wait for fixed amount of time', () => {
     expect(elapsed).toBeGreaterThanOrEqual(50);
     expect(elapsed).toBeLessThan(100);
   });
+
+  it('should wait for the amount of seconds', async () => {
+    const elapsed = await time(() => wait.for(1).seconds());
+
+    expect(elapsed).toBeGreaterThanOrEqual(1000);
+    expect(elapsed).toBeLessThan(1100);
+  });
 });
