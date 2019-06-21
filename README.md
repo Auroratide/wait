@@ -7,7 +7,7 @@ import wait from '@auroratide/wait';
 
 const operation = async () => {
   // do something
-  await wait.for(100).milliseconds();
+  await wait.milliseconds(100);
   // do more things
 };
 ```

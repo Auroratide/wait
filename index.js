@@ -1,12 +1,11 @@
-const fixedTime = n => ( {
-  milliseconds: () => new Promise(resolve => setTimeout(resolve, n)),
-  seconds: () => new Promise(resolve => setTimeout(resolve, n * 1000))
-} );
+const milliseconds = n => new Promise(resolve => setTimeout(resolve, n));
+
+const seconds = n => milliseconds(n * 1000);
 
 const condition = conditional => new Promise(resolve => {
   const it = (function*() {
     while(!conditional())
-      yield fixedTime(0).milliseconds().then(() => it.next());
+      yield milliseconds(0).then(() => it.next());
     resolve();
   })();
 
@@ -14,6 +13,7 @@ const condition = conditional => new Promise(resolve => {
 });
 
 module.exports = {
-  for: fixedTime,
+  milliseconds,
+  seconds,
   condition
 };
